@@ -151,6 +151,49 @@ transform:translateY(120vh);
         transform:translateY(-10px);
     }
 }
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+/* Paste the FAQ CSS here */
+
+.faq-item{
+    max-width:850px;
+    margin:15px auto;
+    background:#1b1b1b;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 0 15px rgba(255,215,0,.15);
+}
+
+.faq-question{
+    width:100%;
+    padding:18px 20px;
+    background:#222;
+    color:#FFD700;
+    border:none;
+    text-align:left;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.faq-answer{
+    display:none;
+    padding:18px 20px;
+    color:#ddd;
+    background:#111;
+}
+
+.faq-item.active .faq-answer{
+    display:block;
+}
+
 </style>
 
 </head>
