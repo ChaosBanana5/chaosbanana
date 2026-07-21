@@ -1,79 +1,44 @@
-// FAQ Accordion
-const faqItems = document.querySelectorAll(".faq-item");
+// ==========================
+// CHAOS BANANA V2
+// ==========================
 
-faqItems.forEach(item => {
-  const button = item.querySelector("button");
-
-  button.addEventListener("click", () => {
-    faqItems.forEach(faq => {
-      if (faq !== item) {
-        faq.classList.remove("active");
-      }
+// Smooth fade-in animation
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+        }
     });
-
-    item.classList.toggle("active");
-  });
 });
 
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function(e) {
-    e.preventDefault();
-
-    const target = document.querySelector(this.getAttribute("href"));
-
-    if(target){
-      target.scrollIntoView({
-        behavior:"smooth"
-      });
-    }
-  });
+document.querySelectorAll(".card").forEach((card) => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(40px)";
+    card.style.transition = "0.6s ease";
+    observer.observe(card);
 });
 
-// Hero Button Animation
-document.querySelectorAll(".btn").forEach(btn => {
+// Floating logo animation
+const logo = document.querySelector(".logo");
 
-  btn.addEventListener("mouseenter", () => {
-    btn.style.transform = "translateY(-4px) scale(1.05)";
-  });
+if (logo) {
+    let angle = 0;
 
-  btn.addEventListener("mouseleave", () => {
-    btn.style.transform = "translateY(0) scale(1)";
-  });
-
-});
-
-// Reveal Animation
-const revealElements = document.querySelectorAll(
-".card,.token-box,.step,.faq-item"
-);
-
-const observer = new IntersectionObserver(entries => {
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.style.opacity="1";
-
-entry.target.style.transform="translateY(0)";
-
+    setInterval(() => {
+        angle += 0.05;
+        logo.style.transform = `translateY(${Math.sin(angle) * 6}px) rotate(${Math.sin(angle) * 2}deg)`;
+    }, 20);
 }
 
+// Button click effect
+document.querySelectorAll(".btn").forEach((button) => {
+    button.addEventListener("click", () => {
+        button.style.transform = "scale(0.96)";
+        setTimeout(() => {
+            button.style.transform = "";
+        }, 120);
+    });
 });
 
-},{
-threshold:0.15
-});
-
-revealElements.forEach(el=>{
-
-el.style.opacity="0";
-
-el.style.transform="translateY(40px)";
-
-el.style.transition=".8s";
-
-observer.observe(el);
-
-});
+console.log("🍌 Chaos Banana Loaded Successfully!");
