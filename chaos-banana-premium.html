@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍌 Chaos Banana — The Chaos Has Begun</title>
+<meta name="description" content="Chaos Banana — the most chaotic banana on Solana. Join the community.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #07070d;
+  --panel: rgba(255,255,255,.055);
+  --border: rgba(255,255,255,.12);
+  --text: #f7f7fb;
+  --muted: #a4a4b5;
+  --accent: #b6ff3b;
+  --accent2: #7d5cff;
+  --gold: #ffd84a;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(125,92,255,.18), transparent 28rem),
+    radial-gradient(circle at 85% 20%, rgba(182,255,59,.10), transparent 24rem),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter, sans-serif;
+  overflow-x:hidden;
+}
+body:before {
+  content:""; position:fixed; inset:0; pointer-events:none; opacity:.12;
+  background-image: radial-gradient(rgba(255,255,255,.5) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+a { color:inherit; text-decoration:none; }
+.container { width:min(1120px, 92%); margin:auto; }
+nav {
+  position:fixed; top:16px; left:50%; transform:translateX(-50%);
+  width:min(1120px,92%); z-index:20;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 16px; border:1px solid var(--border);
+  background:rgba(8,8,15,.72); backdrop-filter:blur(18px);
+  border-radius:20px;
+}
+.brand { display:flex; align-items:center; gap:10px; }
+.logo { width:42px; height:42px; object-fit:contain; border-radius:12px; }
+.brand h1 { font:700 17px "Space Grotesk",sans-serif; letter-spacing:.04em; }
+.nav-links { display:flex; gap:24px; align-items:center; color:var(--muted); font-size:14px; }
+.nav-links a:hover { color:var(--accent); }
+.nav-cta { padding:10px 15px; border-radius:12px; background:var(--accent); color:#101400; font-weight:800; }
+
+.hero { min-height:100vh; display:grid; place-items:center; padding:150px 0 90px; position:relative; }
+.hero-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:60px; align-items:center; }
+.badge { display:inline-flex; gap:8px; align-items:center; padding:9px 13px; border:1px solid rgba(182,255,59,.28); background:rgba(182,255,59,.08); color:var(--accent); border-radius:999px; font-size:12px; font-weight:800; letter-spacing:.08em; }
+h2 { font:700 clamp(54px,8vw,100px)/.92 "Space Grotesk",sans-serif; letter-spacing:-.07em; margin:24px 0; }
+.gradient { background:linear-gradient(110deg,var(--accent),#fff,var(--accent2)); -webkit-background-clip:text; color:transparent; }
+.hero-copy { color:var(--muted); font-size:18px; line-height:1.7; max-width:570px; }
+.buttons { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:15px 20px; border-radius:14px; border:1px solid var(--border); font-weight:800; transition:.25s; }
+.btn:hover { transform:translateY(-3px); border-color:var(--accent); }
+.primary { background:var(--accent); color:#101400; border-color:var(--accent); }
+.secondary { background:rgba(255,255,255,.05); }
+
+.hero-art { min-height:460px; position:relative; display:grid; place-items:center; }
+.orbit { position:absolute; width:390px; height:390px; border:1px solid rgba(182,255,59,.22); border-radius:50%; animation:spin 20s linear infinite; }
+.orbit:before,.orbit:after { content:""; position:absolute; width:9px; height:9px; background:var(--accent); border-radius:50%; box-shadow:0 0 25px var(--accent); }
+.orbit:before { top:18px; left:70px; } .orbit:after { bottom:40px; right:35px; }
+.hero-logo { width:min(390px,80vw); filter:drop-shadow(0 0 35px rgba(182,255,59,.28)); animation:float 4s ease-in-out infinite; z-index:2; }
+@keyframes float { 50% { transform:translateY(-16px) rotate(2deg); } }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+section { padding:100px 0; }
+.section-label { color:var(--accent); font-size:12px; font-weight:900; letter-spacing:.15em; text-transform:uppercase; margin-bottom:12px; }
+.section-title { font:700 clamp(36px,5vw,62px)/1 "Space Grotesk",sans-serif; letter-spacing:-.05em; margin-bottom:18px; }
+.section-subtitle { color:var(--muted); line-height:1.7; max-width:650px; }
+.grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:35px; }
+.card { background:var(--panel); border:1px solid var(--border); border-radius:22px; padding:24px; backdrop-filter:blur(14px); transition:.25s; }
+.card:hover { transform:translateY(-5px); border-color:rgba(182,255,59,.35); }
+.card h3 { margin-bottom:10px; font-size:16px; }
+.card p { color:var(--muted); line-height:1.7; }
+.stat { font:700 27px "Space Grotesk"; color:var(--accent); }
+
+.contract-box { margin-top:35px; display:flex; gap:12px; align-items:center; padding:16px; border:1px solid var(--border); background:rgba(255,255,255,.045); border-radius:18px; overflow:hidden; }
+.contract { flex:1; color:var(--muted); font-family:monospace; font-size:13px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.copy { border:0; cursor:pointer; padding:12px 16px; border-radius:12px; background:var(--accent); color:#101400; font-weight:900; }
+
+.roadmap { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:35px; }
+.phase { position:relative; }
+.phase-number { color:var(--accent); font-size:12px; font-weight:900; letter-spacing:.12em; margin-bottom:18px; }
+.phase h3 { font-size:20px; margin-bottom:10px; }
+.phase p { color:var(--muted); line-height:1.8; }
+
+.community { text-align:center; padding:110px 20px; border:1px solid var(--border); border-radius:30px; background:linear-gradient(135deg,rgba(125,92,255,.12),rgba(182,255,59,.06)); }
+.community .buttons { justify-content:center; }
+
+footer { padding:35px 0 50px; color:var(--muted); text-align:center; font-size:13px; }
+
+@media(max-width:800px) {
+  nav { top:10px; } .nav-links a:not(.nav-cta) { display:none; }
+  .hero-grid { grid-template-columns:1fr; text-align:center; gap:25px; }
+  .hero-copy { margin:auto; } .buttons { justify-content:center; }
+  .hero-art { min-height:340px; } .orbit { width:290px; height:290px; }
+  .grid { grid-template-columns:repeat(2,1fr); }
+  .roadmap { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:500px) {
+  h2 { font-size:54px; } .grid,.roadmap { grid-template-columns:1fr; }
+  .contract-box { align-items:stretch; flex-direction:column; }
+  .contract { white-space:normal; word-break:break-all; }
+}
+</style>
+</head>
+
+<body>
+<nav>
+  <a class="brand" href="#">
+    <img src="logo.png" class="logo" alt="Chaos Banana Logo">
+    <h1>CHAOS BANANA</h1>
+  </a>
+  <div class="nav-links">
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="https://x.com/CHOASBANANA" target="_blank">X</a>
+    <a class="nav-cta" href="https://pump.fun/coin/AKvwHnyASea1sh8Ytuj7PBuKSGEoLSoTrXrWC1Q1pump" target="_blank">Buy $CHAOS</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="badge">🟢 LIVE ON SOLANA · THE CHAOS HAS BEGUN</div>
+      <h2>ENTER THE<br><span class="gradient">CHAOS.</span></h2>
+      <p class="hero-copy">Memes first. Community always. Pure banana chaos. Welcome to the most chaotic banana on Solana. 🍌</p>
+      <div class="buttons">
+        <a class="btn primary" href="https://pump.fun/coin/AKvwHnyASea1sh8Ytuj7PBuKSGEoLSoTrXrWC1Q1pump" target="_blank">🍌 Buy $CHAOS</a>
+        <a class="btn secondary" href="https://dexscreener.com/solana/AKvwHnyASea1sh8Ytuj7PBuKSGEoLSoTrXrWC1Q1pump" target="_blank">📈 View Chart</a>
+        <a class="btn secondary" href="https://t.me/ChaosBananaOfficial" target="_blank">💬 Telegram</a>
+      </div>
+      <div class="contract-box">
+        <div class="contract">AKvwHnyASea1sh8Ytuj7PBuKSGEoLSoTrXrWC1Q1pump</div>
+        <button class="copy" onclick="copyCA()">📋 Copy</button>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="orbit"></div>
+      <img src="logo.png" class="hero-logo" alt="Chaos Banana">
+    </div>
+  </div>
+</section>
+
+<section id="tokenomics">
+  <div class="container">
+    <div class="section-label">THE NUMBERS</div>
+    <h2 class="section-title">Simple. Chaotic. 🍌</h2>
+    <p class="section-subtitle">Everything you need to know about the banana.</p>
+    <div class="grid">
+      <div class="card"><h3>Total Supply</h3><p class="stat">1B</p><p>CHAOS tokens</p></div>
+      <div class="card"><h3>Buy Tax</h3><p class="stat">0%</p><p>No tax on buys</p></div>
+      <div class="card"><h3>Sell Tax</h3><p class="stat">0%</p><p>No tax on sells</p></div>
+      <div class="card"><h3>Blockchain</h3><p class="stat">SOL</p><p>Built on Solana</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="container">
+    <div class="section-label">THE PLAN</div>
+    <h2 class="section-title">Roadmap? More like <span class="gradient">chaos map.</span></h2>
+    <p class="section-subtitle">One banana. One community. One mission: take over the internet.</p>
+    <div class="roadmap">
+      <div class="card phase"><div class="phase-number">PHASE 01</div><h3>🍌 The Peel</h3><p>Website<br>Community<br>X Account</p></div>
+      <div class="card phase"><div class="phase-number">PHASE 02</div><h3>🚀 The Launch</h3><p>Pump.fun launch<br>Community growth<br>1,000 holders</p></div>
+      <div class="card phase"><div class="phase-number">PHASE 03</div><h3>🌌 The Takeover</h3><p>DEX expansion<br>CoinGecko<br>CoinMarketCap</p></div>
+      <div class="card phase"><div class="phase-number">PHASE 04</div><h3>🔥 Full Chaos</h3><p>Banana takeover<br>Memes everywhere<br>Absolute chaos</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="community">
+      <div class="section-label">JOIN THE COMMUNITY</div>
+      <h2 class="section-title">Don't watch the chaos.<br><span class="gradient">Join it.</span></h2>
+      <p class="section-subtitle" style="margin:auto;">The community is where the real chaos happens.</p>
+      <div class="buttons">
+        <a class="btn primary" href="https://t.me/ChaosBananaOfficial" target="_blank">💬 Join Telegram</a>
+        <a class="btn secondary" href="https://x.com/CHOASBANANA" target="_blank">🐦 Follow on X</a>
+        <a class="btn secondary" href="https://dexscreener.com/solana/AKvwHnyASea1sh8Ytuj7PBuKSGEoLSoTrXrWC1Q1pump" target="_blank">📈 DexScreener</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 CHAOS BANANA · Built on Solana 🍌</footer>
+
+<script>
+const CA = "AKvwHnyASea1sh8Ytuj7PBuKSGEoLSoTrXrWC1Q1pump";
+function copyCA() {
+  navigator.clipboard.writeText(CA);
+  const btn = document.querySelector(".copy");
+  btn.textContent = "✅ Copied!";
+  setTimeout(() => btn.textContent = "📋 Copy", 1800);
+}
+</script>
+</body>
+</html>
